@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Кабинет — MyFinance</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <h1>MyFinance</h1>
+
+    <div class="user-menu">
+      <span class="user-name">Личный кабинет</span>
+      <div class="user-dropdown">
+        <button onclick="logout()">Выйти</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<main class="container dashboard">
+
+  <section class="card">
+    <h2>Добавить транзакцию</h2>
+
+    <div class="form-row">
+      <input id="amount" type="number" placeholder="Сумма">
+      
+      <select id="category">
+        <option value="" disabled selected hidden>Категория</option>
+
+        <option value="Еда">Еда</option>
+        <option value="Транспорт">Транспорт</option>
+        <option value="Жильё">Жильё</option>
+        <option value="Развлечения">Развлечения</option>
+        <option value="Прочее">Прочее</option>
+
+        <option value="Зарплата">Зарплата</option>
+        <option value="Бизнес">Бизнес</option>
+        <option value="Подарок">Подарок</option>
+      </select>
+
+    </div>
+
+    <input id="description" placeholder="Описание (необязательно)">
+    <select id="type">
+      <option value="expense">Расход</option>
+      <option value="income">Прибыль</option>
+    </select>
+
+    <button class="btn" onclick="addTx()">Добавить</button>
+  </section>
+
+  <section class="card stats">
+  <h2>Финансовая сводка</h2>
+
+  <div class="stats-grid">
+    <div class="stat income">
+      <span>Прибыль</span>
+      <strong id="statIncome">0 ₽</strong>
+    </div>
+
+    <div class="stat expense">
+      <span>Расходы</span>
+      <strong id="statExpense">0 ₽</strong>
+    </div>
+
+    <div class="stat balance">
+      <span>Баланс</span>
+      <strong id="statBalance">0 ₽</strong>
+    </div>
+  </div>
+
+  <p id="financeTip" class="tip"></p>
+</section>
+
+  <section class="card">
+    <h2>История операций</h2>
+
+    <table id="txTable">
+      <thead>
+        <tr>
+          <th>Сумма</th>
+          <th>Категория</th>
+          <th>Тип</th>
+          <th>Дата</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+  <section class="card">
+  <h2>Аналитика</h2>
+
+  <div class="form-row">
+    <select id="chartPeriod">
+      <option value="all">За всё время</option>
+      <option value="month">За текущий месяц</option>
+    </select>
+
+    <select id="chartType">
+      <option value="pie">Круговая диаграмма</option>
+      <option value="bar">Гистограмма</option>
+    </select>
+
+    <button class="btn" onclick="loadCharts()">Показать</button>
+  </div>
+
+  <canvas id="chartCanvas" height="120"></canvas>
+
+  <h3>Таблица по категориям</h3>
+  <table id="chartTable">
+    <thead>
+      <tr>
+        <th>Категория</th>
+        <th>Тип</th>
+        <th>Сумма</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+
+</main>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
